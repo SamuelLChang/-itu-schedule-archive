@@ -1,11 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaLibSql } from '@prisma/adapter-libsql';
+import { createClient } from '@libsql/client';
 
-// Create Prisma adapter with Turso config
-const adapter = new PrismaLibSql({
+// Create libSQL client for Turso
+const libsql = createClient({
     url: process.env.TURSO_DATABASE_URL!,
     authToken: process.env.TURSO_AUTH_TOKEN,
 });
+
+// Create Prisma adapter
+const adapter = new PrismaLibSql(libsql);
 
 // Create Prisma client with the adapter
 const globalForPrisma = globalThis as unknown as {
