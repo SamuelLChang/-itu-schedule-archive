@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Term {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  courses   Course[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Course {
+  id                String   @id @default(cuid())
+  crn               String
+  code              String
+  title             String
+  level             String?
+  teachingMethod    String?
+  instructor        String?
+  building          String?
+  days              String?
+  times             String?
+  rooms             String?
+  capacity          String?
+  enrolled          String?
+  reservation       String?
+  majorRestriction  String?
+  prerequisites     String?
+  creditConstraint  String?
+
+  termId            String
+  term              Term     @relation(fields: [termId], references: [id])
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
