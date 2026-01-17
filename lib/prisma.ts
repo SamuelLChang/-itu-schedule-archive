@@ -9,7 +9,7 @@ const libsql = createClient({
 });
 
 // Create Prisma adapter
-const adapter = new PrismaLibSql(libsql);
+const adapter = new PrismaLibSql(libsql as any);
 
 // Create Prisma client with the adapter
 const globalForPrisma = globalThis as unknown as {
