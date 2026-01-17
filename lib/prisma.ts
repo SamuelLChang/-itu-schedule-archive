@@ -9,7 +9,7 @@ const libsql = createClient({
 });
 
 // Create Prisma adapter
-const adapter = new PrismaLibSql(libsql as any);
+const adapter = new PrismaLibSql(libsql);
 
 // Create Prisma client with the adapter
 const globalForPrisma = globalThis as unknown as {
@@ -18,7 +18,7 @@ const globalForPrisma = globalThis as unknown as {
 
 export const prisma =
     globalForPrisma.prisma ??
-    new PrismaClient({ adapter: adapter as any });
+    new PrismaClient({ adapter });
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
