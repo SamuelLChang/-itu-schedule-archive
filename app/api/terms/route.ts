@@ -50,6 +50,7 @@ export async function GET() {
 
         return NextResponse.json(sortedTerms);
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch terms' }, { status: 500 });
+        console.error('Terms API Error:', error);
+        return NextResponse.json({ error: 'Failed to fetch terms', details: String(error) }, { status: 500 });
     }
 }
