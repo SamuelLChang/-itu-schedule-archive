@@ -7,10 +7,8 @@
  *   npm run scrape -- --dry-run  # Test without writing to database
  */
 
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { parse as parseHTML } from 'node-html-parser';
-
-const prisma = new PrismaClient();
 
 // Configuration
 const BASE_URL = 'https://obs.itu.edu.tr';
@@ -311,8 +309,6 @@ async function main() {
     } catch (e) {
         console.error('Scraping failed:', e);
         process.exit(1);
-    } finally {
-        await prisma.$disconnect();
     }
 
     console.log(`\nCompleted at: ${new Date().toISOString()}`);

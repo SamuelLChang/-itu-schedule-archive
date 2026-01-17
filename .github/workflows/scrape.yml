@@ -1,0 +1,42 @@
+name: Scrape ITU Courses
+
+on:
+  schedule:
+    # Run at 03:00 UTC on the 1st and 15th of every month
+    - cron: '0 3 1,15 * *'
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma Client
+        run: npx prisma generate
+      
+      - name: Run Scraper
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+        run: npm run scrape
+      
+      - name: Report success
+        if: success()
+        run: echo "✅ Scraping completed successfully at $(date)"
+      
+      - name: Report failure
+        if: failure()
+        run: echo "❌ Scraping failed at $(date)"
