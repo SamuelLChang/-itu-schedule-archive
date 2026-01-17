@@ -1,8 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '@/lib/prisma';
 
 // Custom sort function for terms: Yaz → Bahar → Güz order within each year
 function sortTerms(terms: any[]) {
