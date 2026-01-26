@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 ITU Schedule Archive
 
-## Getting Started
+> **Browse and plan your courses at Istanbul Technical University**
 
-First, run the development server:
+🌐 **[Live Website →](https://itu-schedule-archive.vercel.app/)**
+
+---
+
+## ✨ Features
+
+### 📚 Course Archive
+Browse through **thousands of courses** from past semesters. Data is sourced directly from ITU's public records and updated regularly.
+
+- Filter by academic term, course level, and subject code
+- View detailed course information including instructors, schedules, and capacity
+- Search across all available courses
+
+### 🧙 Schedule Wizard
+Plan your perfect semester with our interactive wizard:
+
+1. **Select your courses** from available options
+2. **Preview your timetable** in a visual calendar
+3. **Export your schedule** as an image
+
+### 📅 Calendar View
+Visualize your weekly schedule with:
+
+- Color-coded course cards
+- Time slot grid view
+- Export to PNG/PDF for sharing
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| **Framework** | Next.js 16 (App Router) |
+| **Styling** | Tailwind CSS |
+| **Database** | Turso (libSQL) |
+| **ORM** | Prisma |
+| **Deployment** | Vercel |
+| **Data Source** | ITU OBS (automated scraping) |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 20+
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/SamuelLChang/-itu-schedule-archive.git
+cd itu-schedule-archive
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your database credentials
+
+# Generate Prisma client
+npx prisma generate
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📊 Data Updates
 
-## Learn More
+Course data is automatically scraped from ITU OBS on the **1st and 15th of each month** via GitHub Actions. You can also trigger a manual scrape:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run scrape
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📝 License
 
-## Deploy on Vercel
+This project is for educational purposes. Course data belongs to Istanbul Technical University.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<p align="center">
+  Made with ❤️ for ITU students
+</p>
