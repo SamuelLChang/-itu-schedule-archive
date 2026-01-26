@@ -7,6 +7,7 @@
  *   npm run scrape -- --dry-run  # Test without writing to database
  */
 
+import 'dotenv/config';
 import prisma from '../lib/prisma';
 import { parse as parseHTML } from 'node-html-parser';
 

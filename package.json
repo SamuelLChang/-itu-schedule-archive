@@ -15,6 +15,7 @@
     "@prisma/client": "^5.22.0",
     "better-sqlite3": "^12.6.2",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "file-saver": "^2.0.5",
     "html2canvas-pro": "^1.6.4",
     "jspdf": "^4.0.0",
